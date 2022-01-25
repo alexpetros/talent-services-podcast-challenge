@@ -1,6 +1,6 @@
 # Talent Matrix Java Screen
 ## Setup
-You will need Java 11+ installed on your machine, as well as the maven build system which usually installs with it. If you don't have one, we recommend openjdk, which you can install on OSX with `brew insall openjdk@11`. The Linux equivalent should be similar, but might vary based on your distribution's package manager.
+You will need Java11 installed on your machine, as well as the maven build system which usually installs with it. If you don't have one, we recommend openjdk, which you can install on OSX with `brew insall openjdk@11`. The Linux equivalent should be similar, but might vary based on your distribution's package manager.
 
 Once you've cloned the repository, run `mvn -q compile exec:java`. This should print "Ready to begin!" to the command line, which indicates that the packages have been installed properly and you're ready to go!
 
