@@ -1,3 +1,10 @@
+# Talent Matrix Java Screen
+## Setup
+You will need Java 11+ installed on your machine, as well as the maven build system which usually installs with it. If you don't have one, we recommend openjdk, which you can install on OSX with `brew insall openjdk@11`. The Linux equivalent should be similar, but might vary based on your distribution's package manager.
+
+Once you've cloned the repository, run `mvn -q compile exec:java`. This should print "Ready to begin!" to the command line, which indicates that the packages have been installed properly and you're ready to go!
+
+## Task
 Your task is based on some real data processing that we do for analytics on our podcasts.
 
 The required steps are:
@@ -27,17 +34,6 @@ The URL for the WaPo Audio API you will need is provided in `Analytics.java`. Th
 When you have successfully completed all steps, you will get an "All tests passed" message when you run the code.
 
 ## Running in CoderPad
-
 The packages in CoderPad are somewhat limited. You should be able to use anything in the Java standard library. CoderPad has also provided the json-simple package for JSON parsing. This library is unfortunately not very well documented, but you can review [this tutorial](https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm) to get a sense of how to use it (go to the "JSON.simple - Using JSONValue" section).
 
 We recommend using the built-in `HttpClient` for HTTP requests. [Here is a simple example](https://openjdk.java.net/groups/net/httpclient/recipes.html) you can refer to.
-
-## Running locally
-
-This code has been tested locally with Java 11, but should work on anything Java 11+.
-
-Run the test class with the following command:
-
-```
-java -enableassertions -classpath "json-simple-1.1.1.jar" Analytics.java
-```
