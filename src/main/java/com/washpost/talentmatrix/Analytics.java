@@ -52,7 +52,6 @@ public class Analytics {
         Analytics analytics = new Analytics(messageList);
 
         analytics.processLogs(LOGS_FILE_PATH);
-        System.out.println("✅ provided code ran without errors");
     }
 
 }

@@ -1,39 +1,58 @@
 # Talent Matrix Java Screen
 ## Setup
-You will need Java11 installed on your machine, as well as the maven build system which usually installs with it. If you don't have one, we recommend openjdk, which you can install on OSX with `brew insall openjdk@11`. The Linux equivalent should be similar, but might vary based on your distribution's package manager.
+You will need Java 11 installed on your machine, as well as the maven build system which usually installs with it. If
+you don't have one, we recommend openjdk, which you can install on OSX with `brew insall openjdk@11`. The Linux
+equivalent should be similar, but might vary based on your distribution's package manager.
 
-Once you've cloned the repository, run `mvn -q compile exec:java`. This should print "Ready to begin!" to the command line, which indicates that the packages have been installed properly and you're ready to go!
+Once you've cloned the repository, run `mvn -q compile exec:java`. This should print "Ready to begin!" to the command
+line, which indicates that the packages have been installed properly and you're ready to go!
+
+We recommend that you use a Java IDE to complete this challenge; if you don't have one, check out the free version of
+[IntelliJ](https://www.jetbrains.com/idea/download/). You are welcome to complete it with a text editor, but importing
+some classes will be required so depending on your editor setup, you might have to do that manually.
 
 ## Task
 Your task is based on some real data processing that we do for analytics on our podcasts.
 
-The required steps are:
-- Get the server log data
-   - Normally, we will fetch from S3, but for the purposes of this exercise the data you need will be in a file at ./data/logs.tsv
-   - The logs are formatted in TSV (tab-separated values) format
-- Filter to only production podcast downloads
+Make sure to read the full instructions before continuing: a few of the data formats are a little tricky.
+
+### Steps
+Open the `src/main/java/com/washpost/talentmatrix/Analytics.java` file. This is where you'll be making changes.
+
+1. Read the server log data. The logs are in a TSV (tab-separated values) format, and stored at ./data/logs.tsv
+2. Filter to only production podcast downloads
    - URL path will start with /washpost-production/ (URL path is the 8th field in the TSV)
    - GET requests only (request method is the 6th field)
    - Status code will be 200 OK or 206 Partial Content (status is the 9th field)
-- Extract the following data from each log entry:
+3. Extract the following data from each log entry:
    - Request IP address (5th field)
    - User agent (11th field)
-   - Podcast episode ID (from URL path, 8th field)
-       - URL paths are in the format `/washpost-production/<SERIES ID>/<PUB DATE>/<EPISODE ID>/<other file data...>`
-- Push an AnalyticsMessage object with the fields you collected to the Analytics API (the AnalyticsMessage class is provided)
+   - Podcast episode ID (a subet of URL path, 8th field)
+4. Using the podcast epsiode ID, fetch the episode title from the WaPo Audio API. See below for the URL format.
+5. Create an AnalyticsMessage object with the fields you collected and push it to the provided list
    - ipAddress
    - userAgent
    - episodeId
-- Fetch the following data for each episode from the WaPo Audio API (field name in parentheses)
-   - Episode title (title)
-- Add the following fields extracted from the Audio API to the analytics object you are sending
-   - title
 
-The URL for the WaPo Audio API you will need is provided in `Analytics.java`. The Analytics API is mocked with a method called postAnalytics() that will simulate sending data to an analytics server. It accepts one parameter, an AnalyticsMessage object.
+### Notes
+The podcast URL paths are in the format `/washpost-production/<SERIES ID>/<PUB DATE>/<EPISODE ID>/<other file data...>`
 
-When you have successfully completed all steps, you will get an "All tests passed" message when you run the code.
+The URL for the WaPo Audio API you will need is provided in `Analytics.java`. You just need to call the base route with
+the episodeId at the end to retrieve the information about that episode. For instance, if the episode id were "00012",
+you would make a GET request to `{BASE_URL}/00012`.
 
-## Running in CoderPad
-The packages in CoderPad are somewhat limited. You should be able to use anything in the Java standard library. CoderPad has also provided the json-simple package for JSON parsing. This library is unfortunately not very well documented, but you can review [this tutorial](https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm) to get a sense of how to use it (go to the "JSON.simple - Using JSONValue" section).
+Hint: at each step, make sure that the code you've written to parse the data provided is returning the thing you expect.
 
-We recommend using the built-in `HttpClient` for HTTP requests. [Here is a simple example](https://openjdk.java.net/groups/net/httpclient/recipes.html) you can refer to.
+## Developing and Testing
+If you want to run and test from the command line, run `mvn -q compile exec:java` to run the main method; use this to
+check your work while you're developing. When you're ready to test against the result set, run `mvn test`.
+
+If you prefer to run the code from your IDE, you can run the `Analytics.java` file while developing, and the
+`AnalyticsTest.java` for full testing.
+
+## Libraries
+We recommend using the built-in `HttpClient` for HTTP requests. [Here is a simple
+example](https://openjdk.java.net/groups/net/httpclient/recipes.html) you can refer to.
+
+We recommend using the [Jackson Databind library](https://www.baeldung.com/jackson-object-mapper-tutorial) to parse JSON
+requests. Jackson is already provided as part of the package's POM file, so you can just import it directly.

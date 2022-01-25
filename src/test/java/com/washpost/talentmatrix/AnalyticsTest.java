@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Unit test for simple App.
+ * Test the Analytics implementation.
  */
-public class AppTest
+public class AnalyticsTest
 {
     private static String LOGS_FILE_PATH = "./data/logs.tsv";
 
