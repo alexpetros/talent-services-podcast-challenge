@@ -1,4 +1,4 @@
-# Talent Matrix Java Screen
+# Talent Matrix Podcast Challenge
 ## Setup
 You will need Java 11 installed on your machine, as well as the maven build system which usually installs with it. If
 you don't have one, we recommend openjdk, which you can install on OSX with `brew insall openjdk@11`. The Linux
@@ -9,7 +9,7 @@ line, which indicates that the packages have been installed properly and you're 
 
 We recommend that you use a Java IDE to complete this challenge; if you don't have one, check out the free version of
 [IntelliJ](https://www.jetbrains.com/idea/download/). You are welcome to complete it with a text editor, but importing
-some classes will be required so depending on your editor setup, you might have to do that manually.
+some classes will be required, so depending on your editor setup you might have to do that manually.
 
 ## Task
 Your task is based on some real data processing that we do for analytics on our podcasts.
@@ -19,7 +19,7 @@ Make sure to read the full instructions before continuing: a few of the data for
 ### Steps
 Open the `src/main/java/com/washpost/talentmatrix/Analytics.java` file. This is where you'll be making changes.
 
-1. Read the server log data. The logs are in a TSV (tab-separated values) format, and stored at ./data/logs.tsv
+1. Read the server log data. The logs are in a TSV (tab-separated values) format, and stored at `./data/logs.tsv`.
 2. Filter to only production podcast downloads
    - URL path will start with /washpost-production/ (URL path is the 8th field in the TSV)
    - GET requests only (request method is the 6th field)
@@ -56,3 +56,8 @@ example](https://openjdk.java.net/groups/net/httpclient/recipes.html) you can re
 
 We recommend using the [Jackson Databind library](https://www.baeldung.com/jackson-object-mapper-tutorial) to parse JSON
 requests. Jackson is already provided as part of the package's POM file, so you can just import it directly.
+
+## Credit
+Thanks to the Washington Post Media Team for writing original version of this challenge, which has been adapted here as
+a maven build.
+
