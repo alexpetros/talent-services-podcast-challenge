@@ -40,10 +40,11 @@ public class Analytics {
         // this.postAnalytics(message);
     }
 
-    /**
-     * Test code below
+    /*
+     * Run the Analytics class directly.
      *
-     * PLEASE DO NOT MODIFY
+     * Use this main method to test your progress while developing. You can modify it if you like, but you don't need
+     * to.
      */
     public static void main(String[] args) {
         System.out.println("Ready to begin!");
