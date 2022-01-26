@@ -14,7 +14,7 @@ message to the command line, which indicates that the packages have been install
 
 We recommend that you use a Java IDE to complete this challenge; if you don't have one, check out the free version of
 [IntelliJ](https://www.jetbrains.com/idea/download/). You are welcome to complete it with a text editor, but importing
-some classes will be required, so depending on your editor setup you might have to do that manually.
+additional classes will be required, so depending on your editor setup you might have to add import statements manually.
 
 ## Task
 Your task is based on some real data processing that we do for analytics on our podcasts.
@@ -25,19 +25,20 @@ Make sure to read the full instructions before continuing: a few of the data for
 Open the `src/main/java/com/washpost/talentmatrix/Analytics.java` file. This is where you'll be making changes.
 
 1. Read the server log data. The logs are in a TSV (tab-separated values) format, and stored at `./data/logs.tsv`.
-2. Filter to only production podcast downloads
+2. Filter the logs to only include production podcast downloads
    - URL path will start with /washpost-production/ (URL path is the 8th field in the TSV)
    - GET requests only (request method is the 6th field)
-   - Status code will be 200 OK or 206 Partial Content (status is the 9th field)
-3. Extract the following data from each log entry:
+   - Status code will be 200 or 206 (status is the 9th field)
+3. Extract the following data from each entry in the filtered list:
    - Request IP address (5th field)
    - User agent (11th field)
-   - Podcast episode ID (a subet of URL path, 8th field)
-4. Using the podcast epsiode ID, fetch the episode title from the WaPo Audio API. See below for the URL format.
+   - Podcast episode ID (a subset of URL path, 8th field. See below for the URL format.)
+4. Using the podcast epsiode ID, fetch the episode title from the WaPo Audio API.
 5. Create an AnalyticsMessage object with the fields you collected and push it to the provided list
    - ipAddress
    - userAgent
    - episodeId
+   - title
 
 ### Notes
 The podcast URL paths are in the format `/washpost-production/<SERIES ID>/<PUB DATE>/<EPISODE ID>/<other file data...>`
