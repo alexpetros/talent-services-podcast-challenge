@@ -1,6 +1,6 @@
 # Talent Matrix Podcast Challenge
 ## Setup
-You will need Java 11 and the maven build system installed on your machine.
+You will need Java 11 (or newer) and the maven build system installed on your machine.
 
 For OSX:
 * Java 11: `brew install openjdk@11`
@@ -9,7 +9,7 @@ For OSX:
 The Linux equivalents should be similar, but might vary based on your distribution's package manager. If you have other
 Java versions installed, you may need to set the `JAVA_HOME` environment variable to a Java 11 JDK.
 
-Once you've cloned the repository, run `mvn compile exec:java`. This should print "Ready to begin!" and then a success
+Once you've cloned the repository, run `mvn compile exec:java -q`. This should print "Ready to begin!" and then a success
 message to the command line, which indicates that the packages have been installed properly and you're ready to go!
 
 We recommend that you use a Java IDE to complete this challenge; if you don't have one, check out the free version of
